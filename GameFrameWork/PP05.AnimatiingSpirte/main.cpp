@@ -10,6 +10,7 @@ int main(int argc, char* argv[])
 		g_game->handleEvents();
 		g_game->update();
 		g_game->render();
+	
 	}
 	g_game->clean();
 	return 0;
