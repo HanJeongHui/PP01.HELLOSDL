@@ -3,14 +3,23 @@
 #include <map>
 #include "SDL.h"
 
-class TextureManager
-{
+class TextureManager {
+private:
+	 static TextureManager* s_pInstance;
+    TextureManager() {}
+
 public:
-	TextureManager() {}
 	~TextureManager() {}
-	bool load(std::string fileName, std::string id, SDL_Renderer*pRenderer);
-	void draw(std::string id, int x, int y, int width, int hdeight, SDL_Renderer* pRenderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
-	void drawFrame(std::string id, int x, int y, int width, int height, int currentRow, int currentFrame, SDL_Renderer*pRenderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
+
+	bool load(std::string fileName, std::string id, SDL_Renderer* pRenderer);
+
+	void draw(std::string id, int x, int y, int width, int height,
+		SDL_Renderer* pRenderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
+
+	void drawFrame(std::string id, int x, int y, int width, int height,
+		int currentRow, int currentFrame,
+		SDL_Renderer* pRenderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
+
 	static TextureManager* Instance()
 	{
 		if (s_pInstance == 0)
@@ -20,8 +29,10 @@ public:
 		}
 		return s_pInstance;
 	}
+
 private:
-	//std::map<std::string, SDL_Texture*>m_textureMap;
-	TextureManager() {}
-	static TextureManager* s_pInstance;
+
+	std::map<std::string, SDL_Texture*> m_textureMap;
 };
+
+typedef TextureManager TheTextureManager;
