@@ -1,6 +1,8 @@
 #include "TextureManager.h"
 #include <SDL_image.h>
 
+TextureManager* TextureManager::s_pInstance = 0;
+
 bool TextureManager::load(std::string fileName, std::string id, SDL_Renderer*pRenderer)
 {
 	SDL_Surface*pTempSurface = IMG_Load(fileName.c_str());
@@ -53,4 +55,4 @@ void TextureManager::drawFrame(std::string id, int x, int y,
 		&destRect, 0, 0, flip);
 }
 
-#pragma once
+
