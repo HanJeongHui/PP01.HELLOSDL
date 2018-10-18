@@ -5,6 +5,7 @@
 
 
 
+
 bool Game::init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen)
 {
 	if (SDL_Init(SDL_INIT_EVERYTHING) >= 0)
@@ -22,8 +23,9 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 		{
 			return false;
 		}
+		m_go.load(100, 100, 128, 82, "animate");
+		m_player.load(300, 300, 128, 82, "animate");
 
-	
 	}
 	else {
 		return false;
@@ -34,42 +36,17 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 
 void Game::render()
 {
-	SDL_RenderClear(m_pRenderer);
-
-	// draw 부분 대치 
-	TheTextureManager::Instance()->draw("animate", 100, 100, 128, 82,
-		m_pRenderer);
-
-	TheTextureManager::Instance()->drawFrame("animate", 100, 100,
-		128, 82, 1, m_currentFrame, m_pRenderer);
-
+	SDL_RenderClear(m_pRenderer); // draw colour로 지움
+	m_go.draw(m_pRenderer);
+	m_player.draw(m_pRenderer);
 	SDL_RenderPresent(m_pRenderer);
 
 }
 void Game::update()
 {
 	m_currentFrame = int(((SDL_GetTicks() / 100) % 1));
-	//m_sourceRectangle.x = 128 * int((SDL_GetTicks() / 100 % 6));
-	//SDL_Event event;
-	//if (SDL_PollEvent(&event))
-	//{
-	//	switch (event.type)
-	//	{
-	//	case SDLK_LEFT:
-	//		m_sourceRectangle.w -= 10;
-	//		break;
-	//	case SDLK_RIGHT:
-	//		m_sourceRectangle.w += 10;
-	//		break;
-	//	case SDLK_UP:
-	//		m_sourceRectangle.h += 10;
-	//		break;
-	//	case SDLK_DOWN:
-	//		m_sourceRectangle.h -= 10;
-	//		break;
-	//	
-	//	}
-	//}
+	m_go.update();
+	m_player.update();
 }
 void Game::clean()
 {

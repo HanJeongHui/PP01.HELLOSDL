@@ -1,4 +1,3 @@
-
 #include "TextureManager.h"
 #include <SDL_image.h>
 
