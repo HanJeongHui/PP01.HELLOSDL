@@ -1,3 +1,4 @@
+
 #pragma once
 #include <iostream>
 #include <map>
@@ -6,7 +7,7 @@
 class TextureManager
 {
 private:
-	
+
 	TextureManager() {}
 	static TextureManager* s_pInstance;
 	std::map<std::string, SDL_Texture*>m_textureMap;

@@ -5,8 +5,10 @@
 
 
 
+
 bool Game::init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen)
 {
+
 	if (SDL_Init(SDL_INIT_EVERYTHING) >= 0)
 	{
 		m_pWindow = SDL_CreateWindow(title, xpos, ypos, width, height,
@@ -22,8 +24,22 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 		{
 			return false;
 		}
+		//m_go.load(100, 100, 128, 82, "animate");
+		//m_player.load(300, 300, 128, 82, "animate");
 
-	
+		
+		m_enemy = new Enemy();
+		m_go = new GameObject();
+		m_player = new Player();
+
+		m_go->load(100, 100, 128, 82, "animate");
+		m_player->load(300, 300, 128, 82, "animate");
+		m_enemy->load(200, 200, 128, 82, "animate");
+
+		m_gameObjects.push_back(m_go);
+		m_gameObjects.push_back(m_player);
+		m_gameObjects.push_back(m_enemy);
+
 	}
 	else {
 		return false;
@@ -34,42 +50,24 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 
 void Game::render()
 {
-	SDL_RenderClear(m_pRenderer);
-
-	// draw 부분 대치 
-	TheTextureManager::Instance()->draw("animate", 100, 100, 128, 82,
-		m_pRenderer);
-
-	TheTextureManager::Instance()->drawFrame("animate", 100, 100,
-		128, 82, 1, m_currentFrame, m_pRenderer);
-
-	SDL_RenderPresent(m_pRenderer);
-
+	SDL_RenderClear(m_pRenderer); // clear to the draw colour
+	for (std::vector<GameObject*>::size_type i = 0;
+		i != m_gameObjects.size(); i++)
+	{
+		m_gameObjects[i]->draw(m_pRenderer);
+	}
+	SDL_RenderPresent(m_pRenderer); // draw to the screen
 }
 void Game::update()
 {
 	m_currentFrame = int(((SDL_GetTicks() / 100) % 1));
-	//m_sourceRectangle.x = 128 * int((SDL_GetTicks() / 100 % 6));
-	//SDL_Event event;
-	//if (SDL_PollEvent(&event))
-	//{
-	//	switch (event.type)
-	//	{
-	//	case SDLK_LEFT:
-	//		m_sourceRectangle.w -= 10;
-	//		break;
-	//	case SDLK_RIGHT:
-	//		m_sourceRectangle.w += 10;
-	//		break;
-	//	case SDLK_UP:
-	//		m_sourceRectangle.h += 10;
-	//		break;
-	//	case SDLK_DOWN:
-	//		m_sourceRectangle.h -= 10;
-	//		break;
-	//	
-	//	}
-	//}
+	//m_go.update();
+	//m_player.update();
+	for (std::vector<GameObject*>::size_type i = 0;
+		i != m_gameObjects.size(); i++)
+	{
+		m_gameObjects[i]->update();
+	}
 }
 void Game::clean()
 {
