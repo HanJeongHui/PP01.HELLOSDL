@@ -15,12 +15,13 @@ bool Game::init(const char* title, int xpos, int ypos,
 		if (m_pWindow != 0)
 		{
 			m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, 0);
+			
 		}
 
 		m_bRunning = true;
 
 		// load 부분 대치   
-		if (!TheTextureManager::Instance()->load("assets/animate-alpha.png", "animate", m_pRenderer))
+		if (!TheTextureManager::Instance()->load("assets/Mytree.png", "tree", m_pRenderer)||!TheTextureManager::Instance()->load("assets/adidasdog.png", "dog", m_pRenderer))
 		{
 			return false;
 		}
@@ -36,21 +37,18 @@ bool Game::init(const char* title, int xpos, int ypos,
 void Game::render()
 {
 	SDL_RenderClear(m_pRenderer);
-
-	
-	TheTextureManager::Instance()->draw("animate", 0, 0, 128, 82,
-		m_pRenderer);
-
-	TheTextureManager::Instance()->drawFrame("animate", 100, 100,
-		128, 82, 1, m_currentFrame, m_pRenderer);
-
+	SDL_SetRenderDrawColor(m_pRenderer, 255, 0, 0, 255);
+	//TheTextureManager::Instance()->draw("dog", 100, 90, 100, 100, m_pRenderer);
+    
+		
 	
 	SDL_RenderPresent(m_pRenderer);
 
 }
 void Game::update()
 {
-	m_currentFrame = int(((SDL_GetTicks() / 100) % 6));
+	m_currentFrame = int(((SDL_GetTicks() / 100) % 1));
+	k_currentFrame = int(((SDL_GetTicks() / 100) % 1));
 	//m_sourceRectangle.x = 128 * int((SDL_GetTicks() / 100 % 6));
 	//SDL_Event event;
 	//if (SDL_PollEvent(&event))
