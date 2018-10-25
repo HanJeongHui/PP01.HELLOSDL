@@ -1,6 +1,7 @@
 #include "GameObject.h"
 #include "Game.h"
 
+
 void GameObject::load(int x, int y, int width, int height,
 	std::string textureID)
 {
@@ -27,11 +28,11 @@ void GameObject::update()
 /*
 void GameObject::clean()
 {
-	SDL_Delay(4000);
-	std::cout << "cleaning game\n";
-	SDL_DestroyWindow(m_pWindow);
-	SDL_DestroyRenderer(m_pRenderer);
-	SDL_Quit();
+SDL_Delay(4000);
+std::cout << "cleaning game\n";
+SDL_DestroyWindow(m_pWindow);
+SDL_DestroyRenderer(m_pRenderer);
+SDL_Quit();
 }
 */
 

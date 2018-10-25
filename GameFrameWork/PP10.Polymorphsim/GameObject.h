@@ -7,9 +7,9 @@
 class GameObject
 {
 public:
-	virtual void load(int x, int y, int width, int height,	std::string textureID); //virtual 자식한테 책임을 넘김
-	virtual void draw(SDL_Renderer* pRenderer);
-	virtual void update();
+	void load(int x, int y, int width, int height, std::string textureID); //virtual 자식한테 책임을 넘김
+	void draw(SDL_Renderer* pRenderer);
+	void update();
 	//virtual void clean();
 protected:
 	std::string m_textureID;

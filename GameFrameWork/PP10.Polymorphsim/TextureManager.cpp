@@ -55,4 +55,3 @@ void TextureManager::drawFrame(std::string id, int x, int y,
 		&destRect, 0, 0, flip);
 }
 
-

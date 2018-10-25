@@ -3,7 +3,7 @@
 void Enemy::load(int x, int y, int width, int height,
 	std::string textureID)
 {
-//	GameObject::load(x, y, width, height, textureID);
+	//	GameObject::load(x, y, width, height, textureID);
 	// 이 코드가 의미가 있을까? 이코드가 없었다면, 자동으로 부모 호출?? 
 	m_x = x;
 	m_y = y;

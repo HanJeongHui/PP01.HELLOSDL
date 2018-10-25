@@ -2,6 +2,7 @@
 #include <SDL_image.h>
 #include <iostream>
 #include <SDL_keycode.h>
+#include "Monster.h"
 
 
 
@@ -20,15 +21,15 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 
 		m_bRunning = true;
 		// load 부분 대치   
-		if (!TheTextureManager::Instance()->load("assets/animate-alpha.png", "animate", m_pRenderer))
+		if (!TheTextureManager::Instance()->load("assets/Mytree.png", "mushroom", m_pRenderer))
 		{
 			return false;
 		}
 		//m_go.load(100, 100, 128, 82, "animate");
 		//m_player.load(300, 300, 128, 82, "animate");
 
-		
-		m_enemy = new Enemy();
+
+		/*m_enemy = new Enemy();
 		m_go = new GameObject();
 		m_player = new Player();
 
@@ -38,7 +39,19 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 
 		m_gameObjects.push_back(m_go);
 		m_gameObjects.push_back(m_player);
-		m_gameObjects.push_back(m_enemy);
+		m_gameObjects.push_back(m_enemy);*/
+		F_monster = new Monster();
+		S_monster = new Monster();
+		F_monster->load(100, 50, 56, 52, "mushroom");
+	    S_monster->load(100, 200, 56, 52, "mushroom");
+
+		F_monster->velocity(4);
+		S_monster->velocity(2);
+
+		gameObjects.push_back(F_monster);
+		gameObjects.push_back(S_monster);
+
+		
 
 	}
 	else {
@@ -56,11 +69,13 @@ void Game::render()
 	{
 		m_gameObjects[i]->draw(m_pRenderer);
 	}
+	SDL_SetRenderDrawColor(m_pRenderer, 50, 55, 55, 255);
 	SDL_RenderPresent(m_pRenderer); // draw to the screen
 }
 void Game::update()
 {
-	m_currentFrame = int(((SDL_GetTicks() / 100) % 1));
+	m_currentFrame = int(((SDL_GetTicks() / 100) % 6));
+	F_currentFrame = int(((SDL_GetTicks() / 100) % 10));
 	//m_go.update();
 	//m_player.update();
 	for (std::vector<GameObject*>::size_type i = 0;

@@ -24,6 +24,6 @@ private:
 	//	SDL_Rect m_sourceRectangle;
 	//SDL_Rect m_destinationRectangle; 
 	//float speed;
-
+	
 	bool m_bRunning;
 };
