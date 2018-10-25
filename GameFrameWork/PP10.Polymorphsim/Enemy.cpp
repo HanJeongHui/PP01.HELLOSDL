@@ -1,4 +1,3 @@
-
 #include "Enemy.h"
 void Enemy::load(int x, int y, int width, int height,
 	std::string textureID)
