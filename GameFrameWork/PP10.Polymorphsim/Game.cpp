@@ -5,7 +5,8 @@
 #include "Monster.h"
 
 
-
+class GameObject;
+class Monster;
 
 bool Game::init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen)
 {
@@ -21,7 +22,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 
 		m_bRunning = true;
 		// load 부분 대치   
-		if (!TheTextureManager::Instance()->load("assets/Mytree.png", "mushroom", m_pRenderer))
+		if (!TheTextureManager::Instance()->load("assets/002.png", "mushroom", m_pRenderer))
 		{
 			return false;
 		}
@@ -42,8 +43,8 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 		m_gameObjects.push_back(m_enemy);*/
 		F_monster = new Monster();
 		S_monster = new Monster();
-		F_monster->load(100, 50, 56, 52, "mushroom");
-	    S_monster->load(100, 200, 56, 52, "mushroom");
+		F_monster->load(100, 50, 110, 165, "mushroom");
+	    S_monster->load(100, 200, 110, 165, "mushroom");
 
 		F_monster->velocity(4);
 		S_monster->velocity(2);
