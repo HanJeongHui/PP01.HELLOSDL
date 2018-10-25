@@ -1,7 +1,6 @@
 #include "Game.h"
 #include <SDL_image.h>
 #include <iostream>
-#include <SDL_keycode.h>
 #include "Monster.h"
 
 
@@ -28,7 +27,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 		}
 		//m_go.load(100, 100, 128, 82, "animate");
 		//m_player.load(300, 300, 128, 82, "animate");
-
+		SDL_SetRenderDrawColor(m_pRenderer, 50, 55, 55, 255);
 
 		/*m_enemy = new Enemy();
 		m_go = new GameObject();
@@ -65,18 +64,18 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 void Game::render()
 {
 	SDL_RenderClear(m_pRenderer); // clear to the draw colour
+
 	for (std::vector<GameObject*>::size_type i = 0;
 		i != m_gameObjects.size(); i++)
 	{
 		m_gameObjects[i]->draw(m_pRenderer);
 	}
-	SDL_SetRenderDrawColor(m_pRenderer, 50, 55, 55, 255);
+
 	SDL_RenderPresent(m_pRenderer); // draw to the screen
 }
 void Game::update()
 {
-	m_currentFrame = int(((SDL_GetTicks() / 100) % 6));
-	F_currentFrame = int(((SDL_GetTicks() / 100) % 10));
+	//F_currentFrame = int(((SDL_GetTicks() / 100) % 10));
 	//m_go.update();
 	//m_player.update();
 	for (std::vector<GameObject*>::size_type i = 0;
@@ -87,7 +86,7 @@ void Game::update()
 }
 void Game::clean()
 {
-	SDL_Delay(4000);
+
 	std::cout << "cleaning game\n";
 	SDL_DestroyWindow(m_pWindow);
 	SDL_DestroyRenderer(m_pRenderer);
