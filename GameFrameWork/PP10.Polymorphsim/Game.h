@@ -15,7 +15,7 @@ public:
 	~Game() {}
 	bool init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen);
 	void render();
-	std::vector<GameObject*> m_gameObjects;
+
 	void update();
 	void handleEvents();
 	void clean();
@@ -35,8 +35,8 @@ private:
 	//	SDL_Rect m_sourceRectangle;
 	//SDL_Rect m_destinationRectangle; 
 	//float speed;
-	std::vector<GameObject*> gameObjects;
-	Monster* F_monster;
-	Monster* S_monster;
+	std::vector<GameObject*> m_gameObjects;
+	GameObject* F_monster;
+	GameObject* S_monster;
 	bool m_bRunning;
 };

@@ -23,8 +23,9 @@ void GameObject::draw(SDL_Renderer* pRenderer)
 
 void GameObject::update()
 {
-	m_x += 1;
+	m_x += 10;
 }
+
 /*
 void GameObject::clean()
 {

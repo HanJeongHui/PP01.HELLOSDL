@@ -42,14 +42,15 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 		m_gameObjects.push_back(m_enemy);*/
 		F_monster = new Monster();
 		S_monster = new Monster();
-		F_monster->load(100, 50, 110, 165, "mushroom");
-	    S_monster->load(100, 200, 110, 165, "mushroom");
+		F_monster->load(100, 50, 128, 165, "mushroom");
+	    S_monster->load(100, 200, 128, 165, "mushroom");
 
-		F_monster->velocity(4);
-		S_monster->velocity(2);
 
-		gameObjects.push_back(F_monster);
-		gameObjects.push_back(S_monster);
+		((Monster*)F_monster)->velocity(4);
+		((Monster*)S_monster)->velocity(2);
+
+		m_gameObjects.push_back(F_monster);
+		m_gameObjects.push_back(S_monster);
 
 		
 
