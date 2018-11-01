@@ -6,6 +6,7 @@ InputHandler* InputHandler::s_pInstance = 0;
 InputHandler::InputHandler()
 {
 	// »ı¼ºÀÚ 
+	m_keystates = nullptr;
 }
 
 void InputHandler::clean()
