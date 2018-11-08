@@ -7,6 +7,7 @@ InputHandler* InputHandler::s_pInstance = 0;
 
 InputHandler::InputHandler()
 {
+	m_mousePosition = new Vector2D(0.0f, 0.0f);
 	for (int i = 0; i < 3; i++)
 	{
 		m_mouseButtonStates.push_back(false);
