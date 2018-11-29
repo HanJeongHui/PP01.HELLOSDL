@@ -2,8 +2,7 @@
 #include <SDL.h>
 #include <vector>
 #include "GameObject.h"
-
-class GameStateMachine;
+#include "GameStateMachine.h"
 
 class Game
 {
@@ -17,7 +16,7 @@ public:
 		}
 		return pInstance;
 	}
-
+	GameStateMachine* getStateMachine() { return pGameStateMachine; }
 	bool init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen);
 	void render();
 	void update();

@@ -6,7 +6,6 @@
 #include "Enemy.h"
 #include <SDL_image.h>
 #include <iostream>
-#include "GameStateMachine.h"
 #include "MenuState.h"
 #include "PlayState.h"
 

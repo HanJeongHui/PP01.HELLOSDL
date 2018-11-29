@@ -1,7 +1,9 @@
 #include "MenuState.h"
 #include "TextureManager.h"
 #include "Game.h"
+#include "PlayState.h"
 #include "MenuButton.h"
+#include "GameStateMachine.h"
 
 const std::string MenuState::s_menuID = "MENU";
 MenuState* MenuState::s_pInstance = 0;
@@ -20,7 +22,14 @@ void MenuState::render()
 		m_gameObjects[i]->draw();
 	}
 }
-
+void MenuState::s_menuToPlay()
+{
+	TheGame::Instance()->getStateMachine()->changeState(new PlayState());
+}
+void MenuState::s_exitFromMenu()
+{
+	TheGame::Instance()->quit();
+}
 bool MenuState::onEnter()
 {
 	if (!TheTextureManager::Instance()->load("assets/button.png",
@@ -34,9 +43,13 @@ bool MenuState::onEnter()
 		return false;
 	}
 	GameObject* button1 = new MenuButton(
-		new LoaderParams(100, 100, 400, 100, "playbutton"));
+		new LoaderParams(100, 100, 400, 100, "playbutton"),
+		s_menuToPlay);
+
 	GameObject* button2 = new MenuButton(
-		new LoaderParams(100, 300, 400, 100, "exitbutton"));
+		new LoaderParams(100, 300, 400, 100, "exitbutton"),
+		s_exitFromMenu);
+
 	m_gameObjects.push_back(button1);
 	m_gameObjects.push_back(button2);
 	std::cout << "entering MenuState\n";
