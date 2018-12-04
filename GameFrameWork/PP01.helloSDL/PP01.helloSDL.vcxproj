@@ -67,18 +67,21 @@
     <Import Project="..\64bit.props" />
     <Import Project="86.props" />
     <Import Project="..\HOSOUT.props" />
+    <Import Project="3thx86.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\64bit.props" />
     <Import Project="86.props" />
     <Import Project="..\HOSOUT.props" />
+    <Import Project="3thx86.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\64bit.props" />
     <Import Project="86.props" />
     <Import Project="..\HOSOUT.props" />
+    <Import Project="3thx86.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
