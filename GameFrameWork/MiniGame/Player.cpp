@@ -1,8 +1,7 @@
 #include "Player.h"
 #include "InputHandler.h"
 
-Player::Player(const LoaderParams* pParams) :
-	SDLGameObject(pParams)
+Player::Player(const LoaderParams* pParams) :SDLGameObject(pParams)
 {
 
 }
@@ -14,6 +13,7 @@ void Player::draw()
 
 void Player::update()
 {
+	Firepos = m_position;
 	m_velocity.setX(0);
 	m_velocity.setY(0);
 	handleInput();

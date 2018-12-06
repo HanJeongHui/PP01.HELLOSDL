@@ -5,6 +5,7 @@
 
 class SDLGameObject : public GameObject
 {
+	friend class Playstate;
 public:
 	SDLGameObject(const LoaderParams* pParams);
 	virtual void draw();

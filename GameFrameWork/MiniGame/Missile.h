@@ -2,14 +2,13 @@
 #include "GameObject.h"
 #include "SDLGameObject.h"
 
-class Player : public SDLGameObject
-{
+class Missile : public SDLGameObject {
 public:
-	Player(const LoaderParams* pParams);
+	Missile(const LoaderParams* pParams);
 	virtual void draw();
 	virtual void update();
 	virtual void clean();
-	Vector2D Firepos;
+
 private:
 	void handleInput();
 };
