@@ -29,7 +29,6 @@ public:
 private:
 	Game() {}
 	static Game* pInstance;
-
 	SDL_Window * m_pWindow;
 	SDL_Renderer* m_pRenderer;
 	bool m_bRunning;

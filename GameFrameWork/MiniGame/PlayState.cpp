@@ -13,20 +13,20 @@ PlayState* PlayState::s_pInstance = 0;
 void PlayState::update()
 {
 	if (checkCollision(
-		dynamic_cast<SDLGameObject*>(m_gameObjects[0]), dynamic_cast<SDLGameObject*>(m_gameObjects[1])))
+		dynamic_cast<SDLGameObject*>(m_gameObjects[1]), dynamic_cast<SDLGameObject*>(m_gameObjects[2])))
 	{
 		TheGame::Instance()->getStateMachine()->changeState(
 			new GameOverState());
 	}
-	for (int i = 2; i < m_gameObjects.size(); i++)
+	for (int i = 3; i < m_gameObjects.size(); i++)
 	{
 		if (checkCollision(
-			dynamic_cast<SDLGameObject*>(m_gameObjects[0]), dynamic_cast<SDLGameObject*>(m_gameObjects[i])))
+			dynamic_cast<SDLGameObject*>(m_gameObjects[1]), dynamic_cast<SDLGameObject*>(m_gameObjects[i])))
 		{
 			SDL_RenderDrawLine(TheGame::Instance()->getRenderer(), 0, 0, 100, 100);
 		}
 		if (checkCollision(
-			dynamic_cast<SDLGameObject*>(m_gameObjects[1]), dynamic_cast<SDLGameObject*>(m_gameObjects[i])))
+			dynamic_cast<SDLGameObject*>(m_gameObjects[2]), dynamic_cast<SDLGameObject*>(m_gameObjects[i])))
 		{
 			//마사일하고 적 충돌시 코드
 			SDL_RenderDrawLine(TheGame::Instance()->getRenderer(), 0, 0, 100, 100);
@@ -41,12 +41,10 @@ void PlayState::update()
 	if (TheInputHandler::Instance()->isKeyDown(
 		SDL_SCANCODE_SPACE))
 	{
+		//if(playerm_velocity >0)
 		if (SDL_GetTicks() > Nextfire)
 		{
-			GameObject* missile = new Missile(new LoaderParams(
-				dynamic_cast<Player*>(m_gameObjects[0])->Firepos.getX(),
-				dynamic_cast<Player*>(m_gameObjects[0])->Firepos.getY(),
-				59, 31, "Missile"));
+			GameObject* missile = new Missile(new LoaderParams(dynamic_cast<Player*>(m_gameObjects[1])->Firepos.getX(),	dynamic_cast<Player*>(m_gameObjects[1])->Firepos.getY(),59, 31, "Missile"));
 			m_gameObjects.push_back(missile);
 			Nextfire = SDL_GetTicks() + Firerate;
 		}
@@ -69,9 +67,11 @@ void PlayState::render()
 }
 bool PlayState::onEnter()
 {
-	if (!TheTextureManager::Instance()->load(
-		"assets/helicopter.png", "helicopter",
-		TheGame::Instance()->getRenderer()))
+	if (!TheTextureManager::Instance()->load("assets/helicopter.png", "helicopter",TheGame::Instance()->getRenderer()))
+	{
+		return false;
+	}
+	if (!TheTextureManager::Instance()->load("assets/russia.png", "russia", TheGame::Instance()->getRenderer()))
 	{
 		return false;
 	}
@@ -84,10 +84,13 @@ bool PlayState::onEnter()
 	{
 		return false;
 	}
+	GameObject* russia = new Background(new LoaderParams(0, 0, 640, 480, "russia"));
+	m_gameObjects.push_back(russia);
 	GameObject* player = new Player(new LoaderParams(100, 100, 128, 55, "helicopter"));
 	m_gameObjects.push_back(player);
 	GameObject* enemy = new Enemy(new LoaderParams(500, 100, 128, 55, "helicopter2"));
 	m_gameObjects.push_back(enemy);
+
 	std::cout << "entering PlayState\n";
 	return true;
 
