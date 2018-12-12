@@ -21,7 +21,8 @@ public:
 	int getWidth() {
 		return m_width;
 	}
-
+	void Setwidth(int hp) { m_width = hp; }
+	Vector2D getvelocity() { return m_velocity; }
 protected:
 	int m_width;
 	int m_height;

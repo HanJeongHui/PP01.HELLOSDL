@@ -5,7 +5,7 @@
 Enemy::Enemy(const LoaderParams* pParams) :SDLGameObject(pParams)
 {
 	m_velocity.setY(2);
-	m_velocity.setX(0.001);
+	m_velocity.setX(0);
 }
 
 void Enemy::draw()
@@ -18,11 +18,11 @@ void Enemy::update()
 
 
 	m_currentFrame = int(((SDL_GetTicks() / 100) % 4));
-	if (m_position.getY() < 0) {
-		m_velocity.setY(2);
+	if (m_position.getY() < 100) {
+		m_velocity.setY(m_currentFrame);
 	}
-	else if (m_position.getY() > 400) {
-		m_velocity.setY(-2);
+	else if (m_position.getY() > 430) {
+		m_velocity.setY(-m_currentFrame);
 	}
 	SDLGameObject::update();
 

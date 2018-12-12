@@ -63,6 +63,12 @@
     <ClCompile Include="Background.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Hpbar.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="WinState.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimatedGraphic.h">
@@ -120,6 +126,12 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Background.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Hpbar.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="WinState.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
