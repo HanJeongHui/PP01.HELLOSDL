@@ -37,7 +37,7 @@ void WinState::render()
 }
 bool WinState::onEnter()
 {
-	if (!TheTextureManager::Instance()->load("assets/resume.png",
+	if (!TheTextureManager::Instance()->load("assets/restart.png",
 		"resumebutton", TheGame::Instance()->getRenderer())) {
 		return false;
 	}

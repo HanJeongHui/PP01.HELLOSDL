@@ -41,3 +41,4 @@ private:
 };
 
 typedef InputHandler TheInputHandler;
+//using the = InputHandler::Instance();

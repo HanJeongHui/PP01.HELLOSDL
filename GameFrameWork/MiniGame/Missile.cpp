@@ -6,8 +6,11 @@ Missile::Missile(const LoaderParams* pParams,int dir) :
 {
 	if (dir == 0)
 	{
-		m_velocity.setX(10);
-		m_velocity.setY(0);
+		Vector2D dire = *TheInputHandler::Instance()->getMousePosition() - m_position;
+		dire.normalize();
+		dire *= 3;
+		m_velocity.setX(dire.getX());
+		m_velocity.setY(dire.getY());
 	}
 	else {
 		m_velocity.setX(-10);

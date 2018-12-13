@@ -16,7 +16,7 @@ void Enemy::draw()
 void Enemy::update()
 {
 
-
+	Firepos = m_position;
 	m_currentFrame = int(((SDL_GetTicks() / 100) % 4));
 	if (m_position.getY() < 100) {
 		m_velocity.setY(m_currentFrame);
@@ -24,6 +24,12 @@ void Enemy::update()
 	else if (m_position.getY() > 430) {
 		m_velocity.setY(-m_currentFrame);
 	}
+	/*if (m_position.getX() > 500) {
+		m_velocity.setX(-m_currentFrame);
+	}
+	else if (m_position.getX() < 640) {
+		m_velocity.setX(m_currentFrame);
+	}*/
 	SDLGameObject::update();
 
 

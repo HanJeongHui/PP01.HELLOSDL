@@ -22,7 +22,9 @@ public:
 	}
 	virtual bool checkCollision(SDLGameObject* p1, SDLGameObject* p2);
 	 const unsigned int Firerate = 500;
-	 unsigned int Nextfire = 0;;
+	 const unsigned int Firerate2 = 1000;
+	 unsigned int Nextfire = 0;
+	 unsigned int Nextfire2 = 0;
 	 unsigned long hp = 50;
 private:
 	static const std::string s_playID;

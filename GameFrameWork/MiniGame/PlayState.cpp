@@ -53,13 +53,18 @@ void PlayState::update()
 		if (checkCollision(//미사일 아군
 			dynamic_cast<SDLGameObject*>(m_gameObjects[1]), dynamic_cast<SDLGameObject*>(m_gameObjects[i])))
 		{
-			
+			TheGame::Instance()->getStateMachine()->changeState(
+				new GameOverState());
 		}
+	
+	}
+	for (int i = 3; i < m_gameObjects.size(); i++)
+	{
 		if (checkCollision(//미사일 적
 			dynamic_cast<SDLGameObject*>(m_gameObjects[2]), dynamic_cast<SDLGameObject*>(m_gameObjects[i])))
 		{
 
-			hp -= 1;
+			hp -= 3;
 			dynamic_cast<Hpbar*>(m_gameObjects[3])->Setwidth(hp);
 			std::cout << hp << std::endl;
 		}
@@ -82,7 +87,16 @@ void PlayState::update()
 		TheGame::Instance()->getStateMachine()->changeState(
 			new WinState());
 	}
-	
+	if(SDL_GetTicks() > Nextfire2)
+	{
+		GameObject* missile = new Missile(
+			new LoaderParams(
+				dynamic_cast<Enemy*>(m_gameObjects[2])->Firepos.getX()-80,
+				dynamic_cast<Enemy*>(m_gameObjects[2])->Firepos.getY(),
+				59, 31, "Missile"), 1);
+		m_gameObjects.push_back(missile);
+		Nextfire2 = SDL_GetTicks() + Firerate2;
+	}
 }
 void PlayState::render()
 {
@@ -124,7 +138,7 @@ bool PlayState::onEnter()
 	GameObject* hpbar = new Hpbar(new LoaderParams(80, 30, 500, 35, "hpbar"));
 	m_gameObjects.push_back(hpbar);
 	std::cout << "entering PlayState\n";
-	hp = 10;
+	hp = 500;
 	return true;
 
 }

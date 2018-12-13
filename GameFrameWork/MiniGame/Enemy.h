@@ -9,7 +9,7 @@ public:
 	virtual void draw();
 	virtual void update();
 	virtual void clean();
-
+	Vector2D Firepos;
 private:
 	void handleInput();
 };
