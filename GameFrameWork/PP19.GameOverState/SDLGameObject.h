@@ -1,5 +1,5 @@
 #pragma once
-#include "LoaderParams.h"
+//#include "LoaderParams.h"
 #include "GameObject.h"
 #include "Vector2D.h"
 

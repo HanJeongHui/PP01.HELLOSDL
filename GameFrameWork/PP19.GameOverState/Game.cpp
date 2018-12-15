@@ -33,14 +33,14 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 		}
 
 		SDL_SetRenderDrawColor(m_pRenderer, 0, 40, 60, 255);
-		if (!TextureManager::Instance()->load("assets/animate-alpha.png", "animate", m_pRenderer))
-		{
-			return false;
-		}
+		/*		if (!TextureManager::Instance()->load("assets/animate-alpha.png", "animate", m_pRenderer))
+				{
+					return false;
+				}
 
-		gameObjects.push_back(new Player(new LoaderParams(100, 100, 128, 82, "animate")));
-		gameObjects.push_back(new Enemy(new LoaderParams(0, 0, 128, 82, "animate")));
-
+				gameObjects.push_back(new Player(new LoaderParams(100, 100, 128, 82, "animate")));
+				gameObjects.push_back(new Enemy(new LoaderParams(0, 0, 128, 82, "animate")));
+				/**/
 		pGameStateMachine = new GameStateMachine();
 		pGameStateMachine->changeState(MenuState::Instance());
 
@@ -49,15 +49,14 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	else
 	{
 		m_bRunning = false;
+		return m_bRunning;
 	}
-	return m_bRunning;
 }
-
 void Game::render()
 {
-	SDL_RenderClear(m_pRenderer);
 	pGameStateMachine->render();
-	SDL_RenderPresent(m_pRenderer);
+  SDL_RenderPresent(m_pRenderer);
+	SDL_RenderClear(m_pRenderer);
 }
 
 void Game::update()

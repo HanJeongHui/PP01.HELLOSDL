@@ -73,7 +73,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\user\source\repos\20171299\HanJeongHui\PP01.HELLOSDL\GameFrameWork\SDL2-2.0.8\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\jhhan\source\repos\HanJeongHui\PP01.HELLOSDL\GameFrameWork\SDL2-2.0.8\lib\x86;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\user\source\repos\20171299\HanJeongHui\PP01.HELLOSDL\GameFrameWork\SDL2-2.0.8\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

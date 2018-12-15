@@ -40,15 +40,7 @@ void PlayState::update()
 		}
 
 	}
-
-	if (checkCollision(
-		dynamic_cast<SDLGameObject*>(m_gameObjects[1]), dynamic_cast<SDLGameObject*>(m_gameObjects[2])))
-	{
-		TheGame::Instance()->getStateMachine()->changeState(
-			new GameOverState());
-	}
-
-	for (int i = 3; i < m_gameObjects.size(); i++)
+    for (int i = 3; i < m_gameObjects.size(); i++)
 	{
 		if (checkCollision(//미사일 아군
 			dynamic_cast<SDLGameObject*>(m_gameObjects[1]), dynamic_cast<SDLGameObject*>(m_gameObjects[i])))
@@ -56,7 +48,6 @@ void PlayState::update()
 			TheGame::Instance()->getStateMachine()->changeState(
 				new GameOverState());
 		}
-	
 	}
 	for (int i = 3; i < m_gameObjects.size(); i++)
 	{
@@ -68,6 +59,12 @@ void PlayState::update()
 			dynamic_cast<Hpbar*>(m_gameObjects[3])->Setwidth(hp);
 			std::cout << hp << std::endl;
 		}
+	}
+	if (checkCollision(
+		dynamic_cast<SDLGameObject*>(m_gameObjects[1]), dynamic_cast<SDLGameObject*>(m_gameObjects[2])))
+	{
+		TheGame::Instance()->getStateMachine()->changeState(
+			new GameOverState());
 	}
 	for (int i = 0; i < m_gameObjects.size(); i++)
 	{

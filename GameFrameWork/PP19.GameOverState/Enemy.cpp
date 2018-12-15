@@ -5,7 +5,6 @@
 Enemy::Enemy(const LoaderParams* pParams) :SDLGameObject(pParams)
 {
 	m_velocity.setY(2);
-	m_velocity.setX(0.001);
 }
 
 void Enemy::draw()
@@ -25,7 +24,7 @@ void Enemy::update()
 		m_velocity.setY(-2);
 	}
 	SDLGameObject::update();
-
+	handleInput();
 
 }
 
@@ -36,11 +35,10 @@ void Enemy::clean()
 
 void Enemy::handleInput()
 {
-	if (TheInputHandler::Instance()->getMouseButtonState(LEFT))
-	{
-		m_velocity.setX(1);
-	}
-
 	Vector2D* vec = TheInputHandler::Instance()->getMousePosition();
 	m_velocity = (*vec - m_position) / 100;
+	if (TheInputHandler::Instance()->getMouseButtonState(LEFT))
+	{
+		m_velocity.setX(-1);
+	}	
 }
