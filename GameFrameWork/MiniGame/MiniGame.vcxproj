@@ -134,6 +134,7 @@
     <ClCompile Include="GameStateMachine.cpp" />
     <ClCompile Include="Hpbar.cpp" />
     <ClCompile Include="InputHandler.cpp" />
+    <ClCompile Include="Loding.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuButton.cpp" />
     <ClCompile Include="MenuState.cpp" />
@@ -158,6 +159,7 @@
     <ClInclude Include="Hpbar.h" />
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="LoaderParams.h" />
+    <ClInclude Include="Loding.h" />
     <ClInclude Include="MenuButton.h" />
     <ClInclude Include="MenuState.h" />
     <ClInclude Include="Missile.h" />

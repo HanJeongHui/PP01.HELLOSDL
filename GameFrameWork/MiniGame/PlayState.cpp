@@ -17,7 +17,6 @@ void PlayState::update()
 {
 
 
-
 	if (TheInputHandler::Instance()->isKeyDown(
 		SDL_SCANCODE_SPACE))
 	{
@@ -27,27 +26,28 @@ void PlayState::update()
 			{
 				GameObject* missile = new Missile(
 					new LoaderParams(
-						dynamic_cast<Player*>(m_gameObjects[1])->Firepos.getX(),
+						dynamic_cast<Player*>(m_gameObjects[1])->Firepos.getX()+150,
 						dynamic_cast<Player*>(m_gameObjects[1])->Firepos.getY(),
 						59, 31, "Missile"), 0);
 				m_gameObjects.push_back(missile);
 				Nextfire = SDL_GetTicks() + Firerate;
 			}
-			else {
+		/*	else {
 				GameObject* missile = new Missile(new LoaderParams(dynamic_cast<Player*>(m_gameObjects[1])->Firepos.getX(), dynamic_cast<Player*>(m_gameObjects[1])->Firepos.getY(), 59, 31, "Missile"), 1);
 				m_gameObjects.push_back(missile);
 				Nextfire = SDL_GetTicks() + Firerate;
-			}
+			}*/
 		}
 
 	}
+
 	if (checkCollision(
 		dynamic_cast<SDLGameObject*>(m_gameObjects[1]), dynamic_cast<SDLGameObject*>(m_gameObjects[2])))
 	{
 		TheGame::Instance()->getStateMachine()->changeState(
 			new GameOverState());
 	}
-	
+
 	for (int i = 3; i < m_gameObjects.size(); i++)
 	{
 		if (checkCollision(//미사일 아군
@@ -93,10 +93,25 @@ void PlayState::update()
 			new LoaderParams(
 				dynamic_cast<Enemy*>(m_gameObjects[2])->Firepos.getX()-80,
 				dynamic_cast<Enemy*>(m_gameObjects[2])->Firepos.getY(),
-				59, 31, "Missile"), 1);
+				59, 31, "Missile"), 4);
 		m_gameObjects.push_back(missile);
 		Nextfire2 = SDL_GetTicks() + Firerate2;
+		if(hp<=500)
+		{
+			GameObject* missile = new Missile(
+				new LoaderParams(
+					dynamic_cast<Enemy*>(m_gameObjects[2])->Firepos.getX() - 80,
+					dynamic_cast<Enemy*>(m_gameObjects[2])->Firepos.getY(),
+					59, 31, "Missile"), 1);
+			missile = new Missile(new LoaderParams(
+				dynamic_cast<Enemy*>(m_gameObjects[2])->Firepos.getX() - 80,
+				dynamic_cast<Enemy*>(m_gameObjects[2])->Firepos.getY(),
+				59, 31, "Missile"), 2);
+			
+			m_gameObjects.push_back(missile);
+		}
 	}
+
 }
 void PlayState::render()
 {
@@ -129,16 +144,16 @@ bool PlayState::onEnter()
 	{
 		return false;
 	}
-	GameObject* russia = new Background(new LoaderParams(0, 0, 640, 480, "russia"));
+	GameObject* russia = new Background(new LoaderParams(0, 0, 1280, 720, "russia"));
 	m_gameObjects.push_back(russia);
 	GameObject* player = new Player(new LoaderParams(100, 100, 128, 55, "helicopter"));
 	m_gameObjects.push_back(player);
-	GameObject* enemy = new Enemy(new LoaderParams(500, 100, 128, 55, "helicopter2"));
+	GameObject* enemy = new Enemy(new LoaderParams(1200, 100, 128, 55, "helicopter2"));
 	m_gameObjects.push_back(enemy);
-	GameObject* hpbar = new Hpbar(new LoaderParams(80, 30, 500, 35, "hpbar"));
+	GameObject* hpbar = new Hpbar(new LoaderParams(80, 30, 1000, 35, "hpbar"));
 	m_gameObjects.push_back(hpbar);
 	std::cout << "entering PlayState\n";
-	hp = 500;
+	hp = 1000;
 	return true;
 
 }

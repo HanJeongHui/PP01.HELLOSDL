@@ -1,9 +1,11 @@
 #include "MenuState.h"
 #include "TextureManager.h"
 #include "Game.h"
+#include "Player.h"
 #include "PlayState.h"
 #include "MenuButton.h"
 #include "GameStateMachine.h"
+#include "Loding.h"
 
 const std::string MenuState::s_menuID = "MENU";
 MenuState* MenuState::s_pInstance = 0;
@@ -37,19 +39,24 @@ bool MenuState::onEnter()
 	{
 		return false;
 	}
+	if (!TheTextureManager::Instance()->load("assets/helicopter.png", "helicopter", TheGame::Instance()->getRenderer()))
+	{
+		return false;
+	}
 	if (!TheTextureManager::Instance()->load("assets/exit.png",
 		"exitbutton", TheGame::Instance()->getRenderer()))
 	{
 		return false;
 	}
 	GameObject* button1 = new MenuButton(
-		new LoaderParams(100, 100, 400, 100, "playbutton"),
+		new LoaderParams(400, 300, 400, 100, "playbutton"),
 		s_menuToPlay);
 
 	GameObject* button2 = new MenuButton(
-		new LoaderParams(100, 300, 400, 100, "exitbutton"),
+		new LoaderParams(400, 500, 400, 100, "exitbutton"),
 		s_exitFromMenu);
-
+	GameObject* loding= (new Loding(new LoaderParams(500, 100, 128, 82, "helicopter")));
+	m_gameObjects.push_back(loding);
 	m_gameObjects.push_back(button1);
 	m_gameObjects.push_back(button2);
 	std::cout << "entering MenuState\n";

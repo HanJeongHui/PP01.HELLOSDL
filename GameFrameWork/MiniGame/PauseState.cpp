@@ -4,6 +4,7 @@
 #include "MenuState.h"
 #include "MenuButton.h"
 #include "InputHandler.h"
+#include "Background.h"
 
 class GameObject;
 
@@ -43,13 +44,20 @@ bool PauseState::onEnter()
 	if (!TheTextureManager::Instance()->load("assets/main.png",
 		"mainbutton", TheGame::Instance()->getRenderer())) {
 		return false;
+	}	
+	if (!TheTextureManager::Instance()->load("assets/pause.png",
+		"pause", TheGame::Instance()->getRenderer())) {
+		return false;
 	}
 	GameObject* button1 = new MenuButton(new
-		LoaderParams(200, 100, 200, 80, "mainbutton"), s_pauseToMain);
+		LoaderParams(500, 300, 200, 80, "mainbutton"), s_pauseToMain);
 	GameObject* button2 = new MenuButton(new
-		LoaderParams(200, 300, 200, 80, "resumebutton"), s_resumePlay);
+		LoaderParams(500, 500, 200, 80, "resumebutton"), s_resumePlay);
+	GameObject* pause = new Background(new
+		LoaderParams(490, 0, 225, 225, "pause"));
 	m_gameObjects.push_back(button1);
-	m_gameObjects.push_back(button2);
+	m_gameObjects.push_back(button2);	
+	m_gameObjects.push_back(pause);
 	std::cout << "entering PauseState\n";
 	return true;
 }

@@ -14,7 +14,7 @@ void Player::draw()
 void Player::update()
 {
 	Firepos = m_position;
-	m_velocity.setX(0);
+	m_velocity.setX(0.00001);
 	m_velocity.setY(0);
 	handleInput();
 
@@ -29,23 +29,23 @@ void Player::clean()
 
 void Player::handleInput()
 {
-	Vector2D* target = TheInputHandler::Instance()->getMousePosition();
-	m_velocity = *target - m_position;
-	m_velocity /= 50;
-	/*if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
+//	Vector2D* target = TheInputHandler::Instance()->getMousePosition();
+	//m_velocity = *target - m_position;
+	//m_velocity /= 50;
+	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_D))
 	{
 		m_velocity.setX(2);
 	}
-	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT))
+	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_A))
 	{
 		m_velocity.setX(-2);
 	}
-	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_UP))
+	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_W))
 	{
 		m_velocity.setY(-2);
 	}
-	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_DOWN))
+	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_S))
 	{
 		m_velocity.setY(2);
-	}*/
+	}
 }
