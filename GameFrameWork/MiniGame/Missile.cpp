@@ -8,7 +8,7 @@ Missile::Missile(const LoaderParams* pParams,int dir) :
 	{
 		Vector2D dire = *TheInputHandler::Instance()->getMousePosition() - m_position;
 		dire.normalize();
-		dire *= 3;
+		dire *= 5;
 		m_velocity.setX(dire.getX());
 		m_velocity.setY(dire.getY());
 	}
