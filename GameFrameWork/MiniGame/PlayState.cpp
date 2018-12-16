@@ -15,7 +15,10 @@ const std::string PlayState::s_playID = "PLAY";
 PlayState* PlayState::s_pInstance = 0;
 void PlayState::update()
 {
-
+	for (int i = 0; i < m_gameObjects.size(); i++)
+	{
+		m_gameObjects[i]->update();
+	}
 
 	if (TheInputHandler::Instance()->isKeyDown(
 		SDL_SCANCODE_SPACE))
@@ -47,6 +50,7 @@ void PlayState::update()
 		{
 			TheGame::Instance()->getStateMachine()->changeState(
 				new GameOverState());
+			return;
 		}
 	}
 	for (int i = 3; i < m_gameObjects.size(); i++)
@@ -65,11 +69,9 @@ void PlayState::update()
 	{
 		TheGame::Instance()->getStateMachine()->changeState(
 			new GameOverState());
+		return;
 	}
-	for (int i = 0; i < m_gameObjects.size(); i++)
-	{
-		m_gameObjects[i]->update();
-	}
+	
 
 	
 	
@@ -78,11 +80,13 @@ void PlayState::update()
 		SDL_SCANCODE_ESCAPE))
 	{
 		TheGame::Instance()->getStateMachine()->changeState(new	PauseState());
+		return;
 	}
 	if (hp <= 0)
 	{
 		TheGame::Instance()->getStateMachine()->changeState(
 			new WinState());
+		return;
 	}
 	if(SDL_GetTicks() > Nextfire2)
 	{
